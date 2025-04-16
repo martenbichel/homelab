@@ -1,0 +1,19 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-production
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-production
+    solvers:
+      - dns01:
+          webhook:
+            groupName: acme.k8s-internal.com
+            solverName: njalla
+            config:
+              apiKeySecretRef:
+                name: njalla-api-token
+                key: token
