@@ -1,4 +1,5 @@
 ---
+autoDirectNodeRoutes: true
 bgpControlPlane:
   enabled: true
 cgroup:
