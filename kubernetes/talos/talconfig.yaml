@@ -1,0 +1,100 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/refs/heads/master/pkg/config/schemas/talconfig.json
+clusterName: &clusterName homelab
+endpoint: https://api.k8s.internal:6443
+talosVersion: v1.9.5
+kubernetesVersion: v1.32.3
+allowSchedulingOnControlPlanes: true
+additionalApiServerCertSans:
+  - &controlPlaneVIP 172.16.1.230
+  - 127.0.0.1
+cniConfig:
+  name: none
+
+nodes:
+  - hostname: node01.k8s.internal
+    ipAddress: "172.16.1.231"
+    controlPlane: true
+    certSANs:
+      - node01.k8s.internal
+      - 172.16.1.231
+    installDiskSelector:
+      model: SAMSUNG MZ7PD256
+    machineDisks:
+      - device: /dev/nvme0n1
+        partitions:
+          - mountpoint: /var/local/pvs
+    networkInterfaces:
+      - interface: eno1
+        dhcp: true
+        vip: 
+          ip: *controlPlaneVIP
+
+controlPlane:
+    nodeLabels:
+      topology.kubernetes.io/region: *clusterName
+      topology.kubernetes.io/zone: home
+    schematic:
+      customization:
+        extraKernelArgs:
+          - net.ifnames=1
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/i915
+            - siderolabs/intel-ucode
+            - siderolabs/mei
+    patches:
+      - |-
+        - op: add
+          path: /machine/kubelet/extraArgs
+          value:
+            rotate-server-certificates: "true"
+      - |-
+        cluster:
+          apiServer:
+            extraArgs:
+              runtime-config: admissionregistration.k8s.io/v1alpha1=true
+              feature-gates: MutatingAdmissionPolicy=true
+      - |-
+        machine:
+          network:
+            disableSearchDomain: true
+      - |-
+        cluster:
+          coreDNS:
+            disabled: true 
+          proxy:
+            disabled: true
+      - |-
+        machine:
+          features:
+            hostDNS:
+              enabled: true
+              resolveMemberNames: true
+              forwardKubeDNSToHost: false
+      - |-
+        - op: remove
+          path: /cluster/apiServer/admissionControl
+      - |-
+        cluster:
+          etcd:
+            advertisedSubnets:
+              - 172.16.1.0/24
+      - |-
+        machine:
+          network:
+            extraHostEntries:
+              - ip: 172.16.1.230
+                aliases:
+                  - api.k8s.internal
+      - |-
+        machine:
+          kubelet:
+            extraMounts:
+              - destination: /var/local/pvs
+                type: bind
+                source: /var/local/pvs
+                options:
+                  - rbind
+                  - rshared
+                  - rw
