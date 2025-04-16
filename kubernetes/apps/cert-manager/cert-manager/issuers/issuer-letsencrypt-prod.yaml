@@ -11,7 +11,7 @@ spec:
     solvers:
       - dns01:
           webhook:
-            groupName: acme.k8s-internal.com
+            groupName: acme.yourcompany.com
             solverName: njalla
             config:
               apiKeySecretRef:
