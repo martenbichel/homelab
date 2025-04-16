@@ -6,6 +6,9 @@ metadata:
   name: gateway
 spec:
   gatewayClassName: cilium
+  addresses:
+    - type: IPAddress
+      value: 172.16.1.33
   listeners:
     - name: http
       protocol: HTTP
