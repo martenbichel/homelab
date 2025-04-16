@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: apps-mrtb-io
+spec:
+  secretName: "apps-mrtb-io-tls"
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "apps.mrtb.io"
+  dnsNames:
+    - "apps.mrtb.io"
+    - "*.apps.mrtb.io"
