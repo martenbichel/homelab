@@ -1,0 +1,54 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+tasks:
+  generate-clusterconfig:
+    desc: Generate clusterconfig for Talos
+    preconditions:
+      - which infisical test talhelper
+      - test -f {{.K8S_DIR}}/talos/talsecret.yaml
+      - test -f {{.K8S_DIR}}/talos/talconfig.yaml
+    cmds:
+      - infisical run --path /talos --env prod -- talhelper genconfig
+        --secret-file {{.K8S_DIR}}/talos/talsecret.yaml
+        --config-file {{.K8S_DIR}}/talos/talconfig.yaml
+        --out-dir {{.K8S_DIR}}/talos/clusterconfig
+
+  apply-clusterconfig:
+    desc: Apply clusterconfig for a Talos cluster
+    vars:
+      CLUSTERCONFIG_FILES:
+        sh: ls {{.K8S_DIR}}/talos/clusterconfig/*.yaml
+    preconditions:
+      - which ls
+      - test -f "${TALOSCONFIG}"
+    cmds:
+      - for:
+          var: CLUSTERCONFIG_FILES
+        task: _apply-machineconfig
+        vars:
+          FILENAME: "{{.ITEM}}"
+          HOSTNAME: |-
+            {{ trimPrefix (printf "homelab-") (base .ITEM) | trimSuffix ".yaml" }}
+          DRY_RUN: "{{ .DRY_RUN }}"
+          INSECURE: "{{ .INSECURE }}"
+  _apply-machineconfig:
+    internal: true
+    desc: Apply a single Talos machineConfig to a Talos node
+    preconditions:
+      - which talosctl
+      - test -f "{{.FILENAME}}"
+    requires:
+      vars:
+        - HOSTNAME
+        - FILENAME
+    vars:
+      MODE: '{{.MODE | default "auto"}}'
+    cmds:
+      - talosctl apply-config
+        --nodes "{{.HOSTNAME}}"
+        --file "{{.FILENAME}}"
+        --mode="{{.MODE}}"
+        {{ if eq "true" .INSECURE }}--insecure{{ end }}
+        {{ if eq "true" .DRY_RUN }}--dry-run{{ end }}
