@@ -24,7 +24,13 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
-      tls:
-        certificateRefs:
-          - kind: Secret
-            name: apps-mrtb-io-tls
+    #- name: stun
+    #  protocol: UDP
+    #  port: 3478
+    #  allowedRoutes:
+    #    kinds:
+    #    - kind: UDPRoute
+    #  tls:
+    #    certificateRefs:
+    #      - kind: Secret
+    #        name: apps-mrtb-io-tls
