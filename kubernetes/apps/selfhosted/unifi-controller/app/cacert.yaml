@@ -1,0 +1,16 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: unifi-controller-ca
+spec:
+  refreshInterval: 5m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: infisical
+  target:
+    name: unifi-ca-secret
+    creationPolicy: Owner
+  data:
+    - secretKey: ca.pem
+      remoteRef:
+        key: UNIFI_CERT_CHAIN
