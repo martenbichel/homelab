@@ -10,6 +10,7 @@ spec:
     name: tls-backend
     sectionName: https
   validation:
+    hostname: unifi-controller.selfhosted.svc.cluster.local
     caCertificateRefs:
     - name: unifi-ca-secret
       group: ''
