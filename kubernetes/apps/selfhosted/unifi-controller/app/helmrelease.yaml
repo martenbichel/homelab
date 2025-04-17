@@ -68,18 +68,9 @@ spec:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
         size: 5Gi
-        advancedMounts:
-          unifi:
-            app:
-              - path: /unifi
-      logs:
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        advancedMounts:
-          unifi:
-            app:
-              - path: /unifi/log
+        globalMounts:
+          - path: /unifi
+
     route:
       ui:
         hostnames:
