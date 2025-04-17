@@ -12,9 +12,9 @@ spec:
   validation:
     hostname: unifi-controller.selfhosted.svc.cluster.local
     caCertificateRefs:
-    - name: unifi-ca-secret
+    - name: unifi-ca
       group: ''
-      kind: Secret
+      kind: ConfigMap
     subjectAltNames:
       - type: Hostname
         hostname: unifi-controller.selfhosted.svc.cluster.local
