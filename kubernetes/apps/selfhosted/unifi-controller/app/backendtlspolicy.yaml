@@ -7,7 +7,7 @@ spec:
   targetRefs:
   - group: ''
     kind: Service
-    name: tls-backend
+    name: unifi-controller
     sectionName: https
   validation:
     hostname: unifi-controller.selfhosted.svc.cluster.local
