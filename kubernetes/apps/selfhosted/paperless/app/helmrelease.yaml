@@ -108,7 +108,7 @@ spec:
         hostnames:
           - paperless.apps.mrtb.io
         parentRefs:
-          - name: internal
+          - name: gateway
             namespace: kube-system
             sectionName: https
         rules:
