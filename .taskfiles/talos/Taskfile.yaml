@@ -15,6 +15,25 @@ tasks:
         --config-file {{.K8S_DIR}}/talos/talconfig.yaml
         --out-dir {{.K8S_DIR}}/talos/clusterconfig
 
+  apply-node:
+    desc: Apply Talos config to a node [NODE=required]
+    preconditions:
+      - which talosctl
+      - test -f "${TALOSCONFIG}"
+      - talosctl --nodes {{.NODE}} get machineconfig
+    requires:
+      vars:
+        - NODE
+    vars:
+      FILE:
+        sh: ls {{.K8S_DIR}}/talos/clusterconfig/homelab-{{.NODE}}*.yaml
+    cmds:
+      - task: _apply-machineconfig
+        vars:
+          FILENAME: "{{.FILE}}"
+          HOSTNAME: "{{.NODE}}"
+      - talosctl --nodes {{.NODE}} health
+
   apply-clusterconfig:
     desc: Apply clusterconfig for a Talos cluster
     vars:

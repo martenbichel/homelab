@@ -23,6 +23,16 @@ spec:
             runAsGroup: 999
             fsGroup: 999
             fsGroupChangePolicy: "OnRootMismatch"
+        initContainers:
+          fspermissions:
+            image:
+              repository: docker.io/library/busybox
+              tag: latest
+            command: ['/bin/sh', '-c', 'chown -R 999:999 /unifi']
+            securityContext:
+              runAsUser: 0
+              runAsGroup: 0
+              readOnlyRootFilesystem: true
         containers:
           app:
             image:
@@ -30,32 +40,13 @@ spec:
               tag: v9.0.114@sha256:d5c9f87e643854bec4d0c15f6cbeec75510a449a7ec46f1e223eded858add480
             env:
               TZ: "Europe/Berlin"
+              UNIFI_STDOUT: "true"
             resources:
               requests:
                 cpu: 500m
                 memory: 1Gi
               limits:
                 memory: 2Gi
-            securityContext:
-              allowPrivilegeEscalation: false
-              capabilities:
-                drop:
-                  - ALL
-              readOnlyRootFilesystem: true
-          logs:
-            image:
-              repository: docker.io/library/busybox
-              tag: latest
-            args:
-              - /bin/bash
-              - -c
-              - tail -F /unifi/log/*.log
-            resources:
-              requests:
-                cpu: 10m
-                memory: 64Mi
-              limits:
-                memory: 128Mi
             securityContext:
               allowPrivilegeEscalation: false
               capabilities:
