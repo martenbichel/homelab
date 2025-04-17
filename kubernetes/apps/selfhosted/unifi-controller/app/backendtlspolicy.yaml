@@ -14,5 +14,6 @@ spec:
     - name: unifi-ca-secret
       group: ''
       kind: Secret
-    subjectAltNames: 
-      - unifi-controller.selfhosted.svc.cluster.local
+    subjectAltNames:
+      - type: Hostname
+        hostname: unifi-controller.selfhosted.svc.cluster.local
