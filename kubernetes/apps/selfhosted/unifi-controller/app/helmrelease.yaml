@@ -70,7 +70,14 @@ spec:
         size: 5Gi
         globalMounts:
           - path: /unifi
-
+      cert:
+        type: secret
+        name: unifi-secret
+        advancedMounts:
+          unifi:
+            app:
+              - path: /unifi/cert
+                readOnly: true
     route:
       ui:
         hostnames:
