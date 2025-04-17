@@ -41,6 +41,7 @@ spec:
             env:
               TZ: "Europe/Berlin"
               UNIFI_STDOUT: "true"
+              CERT_IS_CHAIN: "true"
             resources:
               requests:
                 cpu: 500m
@@ -70,14 +71,14 @@ spec:
         size: 5Gi
         globalMounts:
           - path: /unifi
-      #cert:
-      #  type: secret
-      #  name: unifi-secret
-      #  advancedMounts:
-      #    unifi:
-      #      app:
-      #        - path: /unifi/cert
-      #          readOnly: true
+      cert:
+        type: secret
+        name: unifi-secret
+        advancedMounts:
+          unifi:
+            app:
+              - path: /unifi/cert
+                readOnly: true
     route:
       ui:
         hostnames:
