@@ -91,14 +91,10 @@ spec:
           - backendRefs:
               - name: unifi-controller
                 port: *uiport
-      inform:
-        hostnames:
-          - unifi.apps.mrtb.io
-        parentRefs:
-          - name: gateway
-            namespace: kube-system
-            sectionName: https
-        rules:
+            matches:
+              - path:
+                  type: Prefix
+                  value: /
           - backendRefs:
               - name: unifi-controller
                 port: *informport
