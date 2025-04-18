@@ -7,7 +7,7 @@ resources:
   - ./actual/ks.yaml
   - ./it-tools/ks.yaml
   - ./paperless/ks.yaml
-  #- ./unifi-controller/ks.yaml
+  - ./unifi-controller/ks.yaml
 components:
   - ../../components/namespace
   - ../../components/flux/alerts
