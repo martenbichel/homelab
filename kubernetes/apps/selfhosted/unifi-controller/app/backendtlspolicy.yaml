@@ -8,13 +8,10 @@ spec:
   - group: ''
     kind: Service
     name: unifi-controller
-    sectionName: https
+    sectionName: ui
   validation:
     hostname: unifi-controller.selfhosted.svc.cluster.local
     caCertificateRefs:
     - name: unifi-ca
       group: ''
       kind: ConfigMap
-    subjectAltNames:
-      - type: Hostname
-        hostname: unifi-controller.selfhosted.svc.cluster.local
