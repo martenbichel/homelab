@@ -69,26 +69,3 @@ spec:
         size: 5Gi
         globalMounts:
           - path: /unifi
-    route:
-      app:
-        hostnames:
-          - unifi.apps.mrtb.io
-        parentRefs:
-          - name: gateway
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - name: unifi-controller
-                port: *uiport
-            matches:
-            - path:
-                type: Prefix
-                value: /
-          - backendRefs:
-              - name: unifi-controller
-                port: *informport
-            matches:
-            - path:
-                type: Prefix
-                value: /inform
