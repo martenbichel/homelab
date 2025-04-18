@@ -95,6 +95,14 @@ spec:
               - path:
                   type: Prefix
                   value: /
+      inform:
+        hostnames:
+          - unifi.apps.mrtb.io
+        parentRefs:
+          - name: gateway
+            namespace: kube-system
+            sectionName: https
+        rules:
           - backendRefs:
               - name: unifi-controller
                 port: *informport
@@ -102,13 +110,3 @@ spec:
               - path:
                   type: Prefix
                   value: /inform
-      #stun:
-      #  kind: UDPRoute
-      #  parentRefs:
-      #    - name: gateway
-      #      namespace: kube-system
-      #      sectionName: stun
-      #  rules:
-      #    - backendRefs:
-      #        - name: unifi
-      #          port: *stunport
