@@ -69,14 +69,6 @@ spec:
         size: 5Gi
         globalMounts:
           - path: /unifi
-      cert:
-        type: secret
-        name: unifi-secret
-        advancedMounts:
-          unifi:
-            app:
-              - path: /unifi/cert
-                readOnly: true
     route:
       app:
         hostnames:
@@ -89,3 +81,14 @@ spec:
           - backendRefs:
               - name: unifi-controller
                 port: *uiport
+            matches:
+            - path:
+                type: Prefix
+                value: /
+          - backendRefs:
+              - name: unifi-controller
+                port: *informport
+            matches:
+            - path:
+                type: Prefix
+                value: /inform
