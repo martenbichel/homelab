@@ -6,7 +6,7 @@ metadata:
 data:
   unifi.conf: |
     upstream unifi-service {
-      server unifi.selfhosted.svc.cluster.local;
+      server unifi-controller.selfhosted.svc.cluster.local;
     }    
     server {
       listen 80;
