@@ -80,7 +80,7 @@ spec:
               - path: /unifi/cert
                 readOnly: true
     route:
-      ui:
+      app:
         hostnames:
           - unifi.apps.mrtb.io
         parentRefs:
@@ -88,25 +88,17 @@ spec:
             namespace: kube-system
             sectionName: https
         rules:
-          - backendRefs:
+          - matches:
+            - path:
+                type: Prefix
+                value: /
+            backendRefs:
               - name: unifi-controller
                 port: *uiport
-            matches:
-              - path:
-                  type: Prefix
-                  value: /
-      inform:
-        hostnames:
-          - unifi.apps.mrtb.io
-        parentRefs:
-          - name: gateway
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
+          - matches:
+            - path:
+                type: Prefix
+                value: /inform
+            backendRefs:
               - name: unifi-controller
                 port: *informport
-            matches:
-              - path:
-                  type: Prefix
-                  value: /inform
