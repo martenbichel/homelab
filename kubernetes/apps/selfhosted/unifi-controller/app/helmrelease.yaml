@@ -62,8 +62,6 @@ spec:
             port: &uiport 8443
           inform:
             port: &informport 8080
-          #stun:
-          #  port: &stunport 3478
     persistence:
       data:
         type: persistentVolumeClaim
@@ -88,17 +86,6 @@ spec:
             namespace: kube-system
             sectionName: https
         rules:
-          - matches:
-            - path:
-                type: Prefix
-                value: /
-            backendRefs:
+          - backendRefs:
               - name: unifi-controller
                 port: *uiport
-          - matches:
-            - path:
-                type: Prefix
-                value: /inform
-            backendRefs:
-              - name: unifi-controller
-                port: *informport
