@@ -53,6 +53,10 @@ spec:
         name: unifi-proxy-config
         globalMounts:
           - path: /etc/nginx/conf.d
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /var/cache/nginx/client_temp
     route:
       proxy:
         hostnames:
