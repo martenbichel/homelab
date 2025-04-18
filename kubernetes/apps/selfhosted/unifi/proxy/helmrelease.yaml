@@ -57,9 +57,6 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /var/cache/nginx
-      runDir:
-        type: emptyDir
-        globalMounts:
           - path: /run
     route:
       proxy:
