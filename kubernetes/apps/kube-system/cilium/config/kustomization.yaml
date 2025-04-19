@@ -5,3 +5,5 @@ kind: Kustomization
 resources:
   - ./l3policy.yaml
   - ./ippool.yaml
+  - ./hubbleroute.yaml
+  - ./httpredirect.yaml
