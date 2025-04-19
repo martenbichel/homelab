@@ -81,5 +81,5 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - name: unifi-controller-proxy
+              - name: unifi-controller
                 port: *informport
