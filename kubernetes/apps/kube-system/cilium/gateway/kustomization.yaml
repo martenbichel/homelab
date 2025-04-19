@@ -6,4 +6,3 @@ resources:
   - ./certificate.yaml
   - ./gateway.yaml
   - ./hubbleroute.yaml
-  - ./httpredirect.yaml
