@@ -30,7 +30,7 @@ spec:
     #  allowedRoutes:
     #    kinds:
     #    - kind: UDPRoute
-    #  tls:
-    #    certificateRefs:
-    #      - kind: Secret
-    #        name: apps-mrtb-io-tls
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: apps-mrtb-io-tls
