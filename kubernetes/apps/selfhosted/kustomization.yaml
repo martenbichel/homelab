@@ -6,7 +6,7 @@ namespace: selfhosted
 resources:
   - ./actual/ks.yaml
   - ./it-tools/ks.yaml
-  - ./n8nex/ks.yaml
+  - ./n8n/ks.yaml
   - ./paperless/ks.yaml
   - ./unifi/ks.yaml
 components:
