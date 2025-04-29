@@ -1,0 +1,10 @@
+apiVersion: homer.bananaops.io/v1alpha1
+kind: HomerServices
+metadata:
+  labels:
+    app.kubernetes.io/name: homer-k8s
+  name: paperless-ngx
+spec:
+  groups:
+    - name: paperless-ngx
+      url: "https://paperless.apps.mrtb.io"
