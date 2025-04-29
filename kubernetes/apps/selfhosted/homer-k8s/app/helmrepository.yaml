@@ -4,7 +4,6 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: homer-k8s
-  namespace: selfhosted
 spec:
   interval: 30m
   url: https://bananaops.github.io/homer-k8s/
