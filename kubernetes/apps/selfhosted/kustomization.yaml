@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: selfhosted
 resources:
   - ./actual/ks.yaml
+  - ./homer-k8s/ks.yaml
   - ./it-tools/ks.yaml
   - ./n8n/ks.yaml
   - ./paperless/ks.yaml
