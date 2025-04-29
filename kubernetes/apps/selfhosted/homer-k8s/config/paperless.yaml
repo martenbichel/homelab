@@ -6,5 +6,7 @@ metadata:
   name: paperless-ngx
 spec:
   groups:
-    - name: paperless-ngx
-      url: "https://paperless.apps.mrtb.io"
+    - name: apps
+      items:
+        - name: paperless-ngx
+          url: "https://paperless.apps.mrtb.io"
