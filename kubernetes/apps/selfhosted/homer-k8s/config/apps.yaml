@@ -1,0 +1,30 @@
+apiVersion: homer.bananaops.io/v1alpha1
+kind: HomerServices
+metadata:
+  labels:
+    app.kubernetes.io/name: homer-k8s
+  name: apps
+spec:
+  groups:
+    - name: Apps
+      items:
+        - name: it-tools
+          url: "https://it-tools.apps.mrtb.io"
+          logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/it-tools.svg"
+          subtitle: "Collection of handy online tools for developers, with great UX"
+        - name: paperless-ngx
+          url: "https://paperless.apps.mrtb.io"
+          logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/paperless-ngx.svg"
+          subtitle: "Document Management System"
+        - name: unifi-controller
+          url: "https://unifi.apps.mrtb.io"
+          logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/unifi-dark.svg"
+          subtitle: "Unifi Network Controller"
+        - name: n8n
+          url: "https://n8n.apps.mrtb.io"
+          logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/n8n.svg"
+          subtitle: "Open Source Workflow Automation Tool"
+        - name: actual
+          url: "https://actual.apps.mrtb.io"
+          logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/actual-budget.svg"
+          subtitle: "A local-first personal finance app"
