@@ -1,0 +1,14 @@
+apiVersion: homer.bananaops.io/v1alpha1
+kind: HomerServices
+metadata:
+  labels:
+    app.kubernetes.io/name: homer-k8s
+  name: it-tools
+spec:
+  groups:
+    - name: Apps
+      items:
+        - name: it-tools
+          url: "https://it-tools.apps.mrtb.io"
+          logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/it-tools.svg"
+          subtitle: "Collection of handy online tools for developers, with great UX"

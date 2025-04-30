@@ -6,7 +6,9 @@ metadata:
   name: paperless-ngx
 spec:
   groups:
-    - name: apps
+    - name: Apps
       items:
         - name: paperless-ngx
           url: "https://paperless.apps.mrtb.io"
+          logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/paperless-ngx.svg"
+          subtitle: "Document Management System"
