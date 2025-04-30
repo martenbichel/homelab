@@ -1,0 +1,14 @@
+apiVersion: homer.bananaops.io/v1alpha1
+kind: HomerServices
+metadata:
+  labels:
+    app.kubernetes.io/name: homer-k8s
+  name: system
+spec:
+  groups:
+    - name: System
+      items:
+        - name: hubble-ui
+          url: "https://hubble.apps.mrtb.io"
+          logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/cilium.svg"
+          subtitle: "Observability & Troubleshooting for Kubernetes Services"
