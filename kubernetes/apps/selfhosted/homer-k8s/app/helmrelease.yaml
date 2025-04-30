@@ -14,3 +14,45 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: homer-k8s
+  values:
+    homer:
+      config: |
+          title: "K8S Dashboard"
+          logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg"
+
+          header: true
+          footer: '<p style="color:"#045464";"> K8S Dashboard</p>'
+          connectivityCheck: true
+
+          # Optional theme customization
+          theme: default
+
+          # Optional theme customization (color overrrides)
+          # overrrides can also be done using CSS vars
+          colors:
+            light:
+              highlight-primary:   "#045464"    # deep teal
+              highlight-secondary: "#f8ea19"    # bright yellow
+              highlight-hover:     "#347483"    #
+              background:          "#f3f3f2"    # light gray
+              card-background:     "#ffffff"    # white
+              text:                "#161616"    # very dark gray
+              text-header:         "#ffffff"    # white
+              text-title:          "#161616"    # very dark gray
+              text-subtitle:       "#045464"    # deep teal
+              card-shadow:         "#00000026"  # black, 15% opacity
+              link:                "#045464"    # deep teal
+              link-hover:          "#045464"    # deep teal
+            dark:
+              highlight-primary:   "#232b34"    #
+              highlight-secondary: "#374452"    #
+              highlight-hover:     "#045464"    #
+              background:          "#232b34"    # very dark gray
+              card-background:     "#374452"    #
+              text:                "#f3f3f2"    # light gray
+              text-header:         "#ffffff"    # white
+              text-title:          "#ded576"    # ochre yellow
+              text-subtitle:       "#ffffff"    #
+              card-shadow:         "#00000066"  # black, 40% opacity
+              link:                "#374452"    #
+              link-hover:          "#ded576"    # ochre yellow
