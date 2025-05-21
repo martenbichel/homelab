@@ -35,6 +35,11 @@ spec:
               DATA_DIR: /data
               DISABLE_SIGNUPS: true
               MEILI_ADDR: http://karakeep-meilisearch.selfhosted.svc.cluster.local:7700
+              OPENAI_API_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: karakeep-secret
+                    key: KARAKEEP_OPENAI_API_KEY
               MEILI_MASTER_KEY:
                 valueFrom:
                   secretKeyRef:
