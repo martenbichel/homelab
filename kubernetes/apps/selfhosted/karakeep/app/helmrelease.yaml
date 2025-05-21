@@ -20,7 +20,6 @@ spec:
         fsGroupChangePolicy: "OnRootMismatch"
     controllers:
       karakeep:
-        forceRename: karakeep
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -111,7 +110,6 @@ spec:
                 memory: 4Gi
     service:
       app:
-        forceRename: karakeep
         primary: true
         controller: karakeep
         ports:
@@ -151,5 +149,5 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - identifier: app
+              - name: app
                 port: *httpPort
