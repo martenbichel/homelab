@@ -7,6 +7,7 @@ resources:
   - ./actual/ks.yaml
   - ./homer-k8s/ks.yaml
   - ./it-tools/ks.yaml
+  - ./karakeep/ks.yaml
   - ./n8n/ks.yaml
   - ./paperless/ks.yaml
   - ./unifi/ks.yaml
