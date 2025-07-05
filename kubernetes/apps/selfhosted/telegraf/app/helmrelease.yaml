@@ -26,4 +26,4 @@ spec:
             servers: 
               - tcp://mqtt.selfhosted.svc.cluster.local:1883
             topics: 
-              - bedrom/#
+              - "bedrom/#"
