@@ -44,11 +44,6 @@ spec:
         ports:
           mqtt:
             port: 1883
-      mqtt-http:
-        controller: mqtt
-        ports:
-          http:
-            port: 8080
     persistence:
       data:
         type: persistentVolumeClaim
@@ -58,15 +53,3 @@ spec:
           mqtt:
             app:
               - path: /mosquitto/data/
-    route:
-      app:
-        hostnames:
-          - mqtt.apps.mrtb.io
-        parentRefs:
-          - name: gateway
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - name: mqtt-http
-                port: 8080
