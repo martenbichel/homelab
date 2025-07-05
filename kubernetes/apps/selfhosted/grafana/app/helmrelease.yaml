@@ -15,19 +15,6 @@ spec:
         kind: HelmRepository
         name: grafana
   values:
-    route:
-      main:
-        enabled: false
-        apiVersion: gateway.networking.k8s.io/v1
-        kind: HTTPRoute
-        hostnames:
-          - grafana.apps.mrtb.io
-        parentRefs:
-          - gateway
-        matches:
-          - path:
-              type: PathPrefix
-              value: /
     persistence:
       enabled: true
       size: 10Gi
