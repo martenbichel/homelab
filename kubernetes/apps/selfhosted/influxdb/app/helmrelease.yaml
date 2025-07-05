@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: influxdb2
-      version: 2.7.4
+      version: 2.1.2
       interval: 30m
       sourceRef:
         kind: HelmRepository
