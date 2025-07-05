@@ -30,3 +30,9 @@ spec:
             topics: 
               - "bedrom/#"
       envFromSecret: "telegraf-secret"
+      env:
+        - name: INFLUX_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: telegraf-secret
+              key: INFLUX_TOKEN
