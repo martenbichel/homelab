@@ -12,6 +12,7 @@ resources:
   - ./mqtt/ks.yaml
   - ./n8n/ks.yaml
   - ./paperless/ks.yaml
+  - ./telegraf/ks.yaml
   - ./unifi/ks.yaml
 components:
   - ../../components/namespace

@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: influxdb
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: telegraf
+      version: 1.8.59
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: influxdata
+  values:
+    config:
+      outputs: 
+        - influxdb_v2:
+            urls: 
+              - http://influxdb-influxdb2.selfhosted.svc.cluster.local
+            bucket: iot
+      inputs:
+        - mqtt_consumer:
+            servers: 
+              - tcp://mqtt.selfhosted.svc.cluster.local:1883
+            topics: 
+              - bedrom/#
