@@ -1,0 +1,42 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: grafana
+      version: 9.2.10
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+  values:
+    route:
+      main:
+        enabled: false
+        apiVersion: gateway.networking.k8s.io/v1
+        kind: HTTPRoute
+        hostnames:
+          - grafana.apps.mrtb.io
+        parentRefs:
+          - gateway
+        matches:
+          - path:
+              type: PathPrefix
+              value: /
+    persistence:
+      enabled: true
+      size: 10Gi
+    admin:
+      existingSecret: "grafana-secret"
+      userKey: ADMIN_USER
+      passwordKey: ADMIN_PASSWORD
+    grafana.ini:
+      server:
+        domain: "grafana.apps.mrtb.io"
+
+    

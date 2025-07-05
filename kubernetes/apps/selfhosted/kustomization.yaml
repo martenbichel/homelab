@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: selfhosted
 resources:
   - ./actual/ks.yaml
+  - ./grafana/ks.yaml
   - ./homer-k8s/ks.yaml
   - ./it-tools/ks.yaml
   - ./influxdb/ks.yaml
