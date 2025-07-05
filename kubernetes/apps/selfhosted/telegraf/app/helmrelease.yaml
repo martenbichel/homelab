@@ -32,4 +32,5 @@ spec:
               - tcp://mqtt.selfhosted.svc.cluster.local:1883
             topics: 
               - "bedrom/#"
+              - "office/#"
             data_format: "json"
