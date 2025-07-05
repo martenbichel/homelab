@@ -7,6 +7,7 @@ resources:
   - ./actual/ks.yaml
   - ./homer-k8s/ks.yaml
   - ./it-tools/ks.yaml
+  - ./influxdb/ks.yaml
   - ./karakeep/ks.yaml
   - ./mqtt/ks.yaml
   - ./n8n/ks.yaml
