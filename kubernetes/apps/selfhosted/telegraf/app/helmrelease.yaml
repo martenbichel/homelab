@@ -25,6 +25,7 @@ spec:
               - http://influxdb-influxdb2.selfhosted.svc.cluster.local
             bucket: iot
             token: "$INFLUX_TOKEN"
+            organization: "influxdata"
       inputs:
         - mqtt_consumer:
             servers: 
