@@ -17,6 +17,7 @@ spec:
   values:
     service: 
       enabled: false
+    envFromSecret: "telegraf-secret" 
     config:
       outputs: 
         - influxdb_v2:
@@ -29,10 +30,3 @@ spec:
               - tcp://mqtt.selfhosted.svc.cluster.local:1883
             topics: 
               - "bedrom/#"
-      envFromSecret: "telegraf-secret"
-      env:
-        - name: INFLUX_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: telegraf-secret
-              key: INFLUX_TOKEN
